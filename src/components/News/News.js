@@ -51,7 +51,7 @@ function News() {
     <React.Fragment>
       <Container>
         {final}
-        <Link to="/" className="btn-link"> <i class="fas fa-arrow-left"></i> &nbsp; Back to Home &nbsp; </Link>
+        <Link to="/" className="btn-link"> <i class="fas fa-arrow-left"></i> &nbsp; Home &nbsp; </Link>
       </Container>
     </React.Fragment>
   );
