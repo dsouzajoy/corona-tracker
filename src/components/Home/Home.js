@@ -62,7 +62,7 @@ function Home() {
               defaultColor: '#ccc',
             }}
           />
-          <span className="text-sorry"><i className="fas fa-heart-broken"></i>&nbsp;we regret the discrepancies in visualizing the borders of certain states/union territories we are working on his issue  </span>
+          <span className="text-sorry"><i className="fas fa-heart-broken"></i>&nbsp;we regret the discrepancies in visualizing the borders of certain states/union territories we are working on this issue</span>
           <span className="text-info"><i className="fa fa-info-circle"></i>&nbsp;Click on a state to see its active cases.</span>
         </div>
         <div className="cards-container">
