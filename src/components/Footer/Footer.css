@@ -5,7 +5,38 @@
     color: var(--clr-light-2);
 }
 
-.footer .authors i {
-    color: var(--clr-accent);
-    margin-bottom: 1em;
+.footer .copyrights {
+    margin-top: 1em;
+    opacity: 0.6;
+}
+
+.footer-link {
+    text-decoration: none;
+    font-size: 1.1em;
+    color: var(--clr-light-2); 
+    line-height: 1.5em;
+    position: relative;
+    letter-spacing: 0.05em;
+    font-family: "Poppins";
+}
+
+.footer-link::after{
+    content: "";
+    width: 100%;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: 250ms linear;
+    opacity: 0.5;
+    background: #ee0979;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #ff6a00, #ee0979); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.footer-link:hover::after {
+    height: 2px;
+    bottom: 0;
+    opacity: 1;
 }
