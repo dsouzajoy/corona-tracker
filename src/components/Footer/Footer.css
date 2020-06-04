@@ -1,0 +1,11 @@
+.footer {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2em;
+    text-align: center;
+    color: var(--clr-light-2);
+}
+
+.footer .authors i {
+    color: var(--clr-accent);
+    margin-bottom: 1em;
+}

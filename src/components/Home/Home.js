@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { Chart } from "react-google-charts";
 import Card from "../Card";
+import Table from "../Table";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [activeCases, setActiveCases] = useState([["State", "Cases", "Display"]]);
@@ -30,7 +32,6 @@ function Home() {
         }
         tempStateData.push([state.state, state.active]);
       });
-      console.log(tempStateData);
       setActiveCases(tempStateData);
       setIsLoading(false);
     })
@@ -39,9 +40,10 @@ function Home() {
   return (
     <div className="home">
       {
-        isLoading ? <span>Loading...</span> : <React.Fragment><div className="chart-container">
+        isLoading ? <span className="loader">Loading...</span> : <React.Fragment><div className="chart-container">
           <h3 className="chart-heading">State wise active cases</h3>
           <Chart
+            loader={<span>Loading...</span>}
             width={window.innerWidth < 600 ? window.innerWidth : 600}
             chartType="GeoChart"
             data={activeCases}
@@ -60,16 +62,20 @@ function Home() {
               defaultColor: '#ccc',
             }}
           />
-          <span className="text-sorry"><i className="fas fa-heart-broken"></i>&nbsp;we regret the discrepancies in visualizing certain states/union territories we are working on his issue  </span>
+          <span className="text-sorry"><i className="fas fa-heart-broken"></i>&nbsp;we regret the discrepancies in visualizing the borders of certain states/union territories we are working on his issue  </span>
           <span className="text-info"><i className="fa fa-info-circle"></i>&nbsp;Click on a state to see its active cases.</span>
         </div>
         <div className="cards-container">
-          {console.log(nationalData)}
-          <Card title={"Total Cases"} value={nationalData.confirmed_cases}/>
-          <Card title={"Active Cases"} value={nationalData.active_cases}/>
-          <Card title={"Recovered"} value={nationalData.recovered_cases}/>
-          <Card title={"Deceased"} value={nationalData.death_cases}/>
+          <Card title={"Confirmed"} value={nationalData.confirmed_cases.toLocaleString('en-IN')}/>
+          <Card title={"Active"} value={nationalData.active_cases.toLocaleString('en-IN')}/>
+          <Card title={"Recovered"} value={nationalData.recovered_cases.toLocaleString('en-IN')}/>
+          <Card title={"Deceased"} value={nationalData.death_cases.toLocaleString('en-IN')}/>
         </div>
+        <span className="text-table-info"><i className="fa fa-info-circle"></i>&nbsp;Scroll on the table too see all details</span>
+        <div className="table-container">
+          <Table colHeaders={["State", "Confirmed", "Active", "Deaths", "Recovered"]} data={stateData}/>
+        </div> 
+        <Link to="/news" className="btn-link"> News Updates &nbsp; <i class="fas fa-arrow-right"></i></Link>
         </React.Fragment>
       }
     </div>

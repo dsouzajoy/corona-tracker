@@ -26,7 +26,15 @@ path{
 }
 
 .table-container {
-    background-color: #fff;
+    background-color: var(--clr-dark-1);
+}
+
+.loader {
+    color: var(--clr-light-2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .cards-container {
@@ -34,6 +42,8 @@ path{
     display: flex;
     padding: 2em;
     background-color: var(--clr-dark-1);
+    flex-wrap:wrap;
+    justify-content: space-between;
 }
 
 .text-info {
@@ -56,13 +66,46 @@ path{
     color: var(--clr-accent);
 }
 
+.table-container {
+    border: 0.5em solid transparent;
+    border-radius: 0.5em;
+    padding:0 0.5em;
+    width: 100%;
+    overflow-x:scroll;
+    margin: 10px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 0px;
+    margin-top: 2em;
+    background: transparent;
+}
+
+.text-table-info {
+    display: none;
+    font-size: 0.9em;
+    margin: 1em;
+    color: var(--clr-light-2);
+    text-align:center;
+}
+
 @media(max-width: 600px) {
-    .cards-container{
-        flex-direction: column;
-    }
 
     .text-sorry {
         width: 90vw;
         margin: 5px auto;
     }
+
+    .text-table-info {
+        display: block;
+    }
+}
+
+.centered-link {
+    text-align: center;
 }

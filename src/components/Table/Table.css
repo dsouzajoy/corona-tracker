@@ -1,0 +1,41 @@
+.table {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: left;
+    border-collapse: collapse;
+    box-shadow: var(--bs-deep);
+    border-radius: 1em;
+    padding: 0.5em;
+    background: var(--clr-light-2);
+    overflow-x: scroll;
+}
+
+.table thead {
+    background: var(--clr-light-2);
+    font-family: "Poppins";
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: left;
+} 
+
+.table thead th{
+    padding: 1em;
+}
+
+.table thead tr, .table tbody tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.table tbody td {
+    padding: 1em;
+}
+
+.table tbody {
+    font-family: "Roboto";
+    color: var(--clr-dark-1);
+    text-align: left;
+}
+
+.table tbody tr {
+    background: var(--clr-light-2);
+    font-weight: 600;
+}
