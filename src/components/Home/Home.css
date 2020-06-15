@@ -128,15 +128,12 @@ path{
      background-color: var(--clr-light-2);
 }
 
-.location-dropdown::before {
-    content:"";
+.location-dropdown option {
+    height: 20px;
+    padding: 2px;
+    padding-left: 7px;
+    font-family: "Poppins";
+    background-color: var(--clr-light-2);
     display: block;
-    width: 0; 
-    height: 0; 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid red;
-    position: absolute;
-    left: 0;
-    top: 0;
+    border-radius: 5px;
 }

@@ -54,7 +54,7 @@ function Home() {
           <h3 className="chart-heading">Active cases</h3>
           <select className="location-dropdown" onChange = {onLocChange}>
             <option value={"IND"}>India</option>
-            <option value={"KAR"}>Karnataka</option>
+            <option value={"KAR"} selected>Karnataka</option>
           </select>
           <Map data={givenLocation === "KAR" ? districtActiveCases : activeCases} location={givenLocation}/>
           <span className="text-info"><i className="fa fa-info-circle"></i>&nbsp;Click on a region to see its active cases.</span>
