@@ -109,3 +109,34 @@ path{
 .centered-link {
     text-align: center;
 }
+
+.location-dropdown {
+    display: inline-block;;
+    width: 150px;
+    height: 30px;
+    padding: 2px;
+    padding-left: 7px;
+    border: 1px solid var(--clr-dark-1);
+    border-radius: 5px;
+    font-family: "Poppins";
+    appearance: none;
+    position: relative;
+    margin-top: 1em;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;
+    -webkit-appearance: none;
+    background-position-x: 120px;
+     background-color: var(--clr-light-2);
+}
+
+.location-dropdown::before {
+    content:"";
+    display: block;
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid red;
+    position: absolute;
+    left: 0;
+    top: 0;
+}

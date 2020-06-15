@@ -2,15 +2,23 @@ import React, { useState } from 'react';
 import './Map.css';   
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import ReactTooltip from 'react-tooltip';
+
 const INDIA_TOPO_JSON = require("../../utils/map.topo.json");
-const PROJECTION_CONFIG = {
-    scale: window.innerWidth > 800 ? 360 : 720,
-    center: [78.9629, 22.5937]
+const KAR_TOPO_JSON = require("../../utils/karnataka.topo.json");
+
+const KAR_PROJECTION_CONFIG = {
+    scale: window.innerWidth > 800 ? 1460 : 2800,
+    center: [76.8, 15.3173]
   };
+
+const IND_PROJECTION_CONFIG = {
+  scale: window.innerWidth > 800 ? 360 : 720,
+  center: [78.9629, 22.5937]
+}
 
   const geographyStyle = {
     default: {
-      outline: 'none'
+      outline: 'none',
     },
     hover: {
       fill: '#dd2756',
@@ -23,35 +31,35 @@ const PROJECTION_CONFIG = {
   
   const DEFAULT_COLOR = '#eee';
 
-  const Legend = () => {
+  const Legend = ({location}) => {
     return (
       <div className="legend">
         <div className="legend-item-holder">
           <div className="legend-item" style={{backgroundColor: "#e5f01d"}}>
           </div>
-          <span>1 - 1,000</span>
+          <span>{location === "KAR" ? "0 - 10" : "1 - 1,000"}</span>
         </div>
         <div  className="legend-item-holder">
           <div className="legend-item" style={{backgroundColor: "#78d159"}}>
           </div>
-          <span>1,001 - 10,000</span>
+          <span>{location === "KAR" ? "11 - 100" : "1,001 - 10,000"}</span>
         </div>
         <div  className="legend-item-holder">
           <div className="legend-item" style={{backgroundColor: "#17a776"}}>
           </div>
-          <span>10,001 - 40,000</span>
+          <span>{location === "KAR" ? "101 - 500" : "10,001 - 40,000"}</span>
         </div>
         <div className="legend-item-holder">  
           <div className="legend-item" style={{backgroundColor: "#007a74"}}>
           </div>
-          <span>40,000+</span>
+          <span>{location === "KAR" ? "500+" : "40,000+"}</span>
         </div>
       </div>
     );
   };
   
 
-function Map({data}) {
+function Map({location, data}) {
     const [tooltipContent, setTooltipContent] = useState('');
 
     const onMouseEnter = (geo, current = { value: 'NA' }) => {
@@ -64,9 +72,9 @@ function Map({data}) {
     setTooltipContent('');
   };
 
-  const colorScale = (value) => {
+  const indColorScale = (value) => {
     value = parseInt(value);
-    if(value >=1 && value <= 1000){
+    if(value >=0 && value <= 1000){
       return "#e5f01d";
     } else if(value > 1000 && value <= 10000){
       return "#78d159";
@@ -79,20 +87,37 @@ function Map({data}) {
     }
   }
 
+    const karColorScale = (value) => {
+    value = parseInt(value);
+    if(value >=0 && value <= 10){
+      return "#e5f01d";
+    } else if(value > 10 && value <= 100){
+      return "#78d159";
+    } else if(value > 100 && value <= 500) {
+      return "#17a776";
+    } else if (value > 500) {
+      return "#007a74";
+    } else {
+      return "#eee";
+    }
+  }
+
+  let colorScale = location === "KAR" ? karColorScale : indColorScale;
+
     return (
         <div className="map">
             <ReactTooltip>{tooltipContent}</ReactTooltip>
             <ComposableMap
-        projectionConfig={PROJECTION_CONFIG}
+        projectionConfig={location === "KAR" ? KAR_PROJECTION_CONFIG : IND_PROJECTION_CONFIG}
         projection="geoMercator"
         width={600}
         height={window.innerWidth > 800 ? 220 : 400}
         data-tip=""
     >
-        <Geographies geography={INDIA_TOPO_JSON}>
+        <Geographies geography={location === "KAR" ? KAR_TOPO_JSON : INDIA_TOPO_JSON}>
           {({ geographies }) =>
             geographies.map(geo => {
-              const current = data.find(s => s.state === geo.properties.name);
+              const current = data.find(s => s.name === geo.properties.name);
               return (
                 <Geography
                   key={geo.rsmKey}
@@ -107,7 +132,7 @@ function Map({data}) {
           }
         </Geographies>
     </ComposableMap>
-    <Legend/>
+    <Legend location={location}/>
         </div>
     )  
 }
