@@ -9,8 +9,9 @@ function Footer() {
             </div>
             <div className="footer-btns">
                <a   rel="noopener noreferrer" target="_blank" href="https://www.mygov.in/aarogya-setu-app/?app=aarogya&target=browser&t=1592196008"> <img src={aarogyaSetuBtn} />  </a>
-               <a   rel="noopener noreferrer" target="_blank" href="https://github.com/dsouzajoy/corona-tracker/tree/master" class="footer-btn-link"> OPEN SOURCED ON GITHUB &nbsp; <i className="fab fa-github"></i> </a>
-            </div>
+               <a   rel="noopener noreferrer" target="_blank" href="https://github.com/dsouzajoy/corona-tracker/tree/master" className="footer-btn-link"> OPEN SOURCED ON GITHUB &nbsp; <i className="fab fa-github"></i> </a>
+           
+                 </div>
             <div className="copyrights">
                 &copy; {new Date().getFullYear()} All Rights Reserved.
             </div>

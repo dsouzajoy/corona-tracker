@@ -23,6 +23,7 @@ path{
     width: 100vw;
     text-align: center;
     color: var(--clr-dark-1);
+    position: relative;
 }
 
 .table-container {
@@ -136,4 +137,13 @@ path{
     background-color: var(--clr-light-2);
     display: block;
     border-radius: 5px;
+}
+
+.last-updated 
+{
+    font-size: 0.6em;
+    transform: translateY(-50%);
+    font-family:"Roboto";
+    color: var(--clr-dark-2);
+    text-overflow: wrap;
 }

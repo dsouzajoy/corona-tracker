@@ -47,14 +47,65 @@ function Home() {
     setGivenLocation(e.target.value);
   }
 
+  const datePresentDifference = (date) => {
+    let dateArray = date.split(",");
+    let extractedDate = new Date(dateArray[0] + " " +dateArray[1].split(" ")[1]);
+    let t = new Date() - extractedDate;
+     let cd = 24 * 60 * 60 * 1000,
+        ch = 60 * 60 * 1000,
+        d = Math.floor(t / cd),
+        h = Math.floor( (t - d * cd) / ch),
+        m = Math.round( (t - d * cd - h * ch) / 60000);
+
+  if( m === 60 ){
+    h++;
+    m = 0;
+  }
+  if( h === 24 ){
+    d++;
+    h = 0;
+  }
+  let lastUpdatedString = "";
+  
+  if(d > 0) {
+    lastUpdatedString += d;
+    if(d > 1 ) {
+      lastUpdatedString += " days ";
+    } else {
+      lastUpdatedString += " day ";
+    }
+  } 
+  if(h > 0) {
+    lastUpdatedString += h;
+    if(h > 1){
+      lastUpdatedString += " hours and ";
+    } else {
+      lastUpdatedString += " hour ";
+    }
+
+  }
+
+  if(m > 0) {
+    lastUpdatedString += m;
+    if(m > 1) {
+      lastUpdatedString += " minutes ";
+    } else {
+      lastUpdatedString += " minute ";
+    }
+  }
+
+  lastUpdatedString += "ago";
+    return lastUpdatedString;
+  }
+
   return (
     <div className="home">
       {
         isLoading ? <span className="loader">Loading...</span> : <React.Fragment><div className="chart-container">
-          <h3 className="chart-heading">Active cases</h3>
+          <h3 className="chart-heading">Active cases <br /> <span className="last-updated">&nbsp;&nbsp;&nbsp;&nbsp;last updated {datePresentDifference(nationalData.last_updated)}</span> </h3>
           <select className="location-dropdown" onChange = {onLocChange}>
             <option value={"IND"}>India</option>
-            <option value={"KAR"} selected>Karnataka</option>
+            <option value={"KAR"} defaultValue>Karnataka</option>
           </select>
           <Map data={givenLocation === "KAR" ? districtActiveCases : activeCases} location={givenLocation}/>
           <span className="text-info"><i className="fa fa-info-circle"></i>&nbsp;Click on a region to see its active cases.</span>
