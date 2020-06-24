@@ -103,9 +103,9 @@ function Home() {
       {
         isLoading ? <span className="loader">Loading...</span> : <React.Fragment><div className="chart-container">
           <h3 className="chart-heading">Active cases <br /> <span className="last-updated">&nbsp;&nbsp;&nbsp;&nbsp;last updated {datePresentDifference(nationalData.last_updated)}</span> </h3>
-          <select className="location-dropdown" onChange = {onLocChange}>
+          <select className="location-dropdown" onChange = {onLocChange} defaultValue={'KAR'}>
             <option value={"IND"}>India</option>
-            <option value={"KAR"} defaultValue>Karnataka</option>
+            <option value={"KAR"}>Karnataka</option>
           </select>
           <Map data={givenLocation === "KAR" ? districtActiveCases : activeCases} location={givenLocation}/>
           <span className="text-info"><i className="fa fa-info-circle"></i>&nbsp;Click on a region to see its active cases.</span>
