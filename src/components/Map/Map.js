@@ -64,7 +64,7 @@ function Map({location, data}) {
 
     const onMouseEnter = (geo, current = { value: 'NA' }) => {
     return () => {
-      setTooltipContent(`${geo.properties.name}: ${current.value.toLocaleString('en-IN')}`);
+      setTooltipContent(`${geo.properties.name}: ${current.value.toLocaleString("en-IN")}`);
     };
   };
 
@@ -88,7 +88,7 @@ function Map({location, data}) {
   }
 
     const karColorScale = (value) => {
-    value = parseInt(value);
+    value = parseInt(value.replace(",", ""));
     if(value >=0 && value <= 10){
       return "#e5f01d";
     } else if(value > 10 && value <= 100){
